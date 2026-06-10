@@ -1,6 +1,6 @@
 // src/data/mockOrders.js
-// این فایل داده‌های آزمایشی برای سفارشات شبیه‌سازی می‌کند
-// در پروژه واقعی این داده‌ها از API می‌آیند
+// This file simulates test data for orders
+// In the real project this data comes from the API
 
 export const STATUSES = {
   PENDING:    { label: "Pending",    color: "gold"  },
@@ -17,7 +17,7 @@ const names       = ["Ahmed Al-Khalid","Sara Mohammed","Omar Hussain","Layla Al-
 function randomItem(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 function randomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
-// داده‌های ثابت (seed) تا هر بار refresh نشوند
+// Fixed data (seed) is not refreshed every time
 export const mockOrders = Array.from({ length: 48 }, (_, i) => {
   const statusKeys  = Object.keys(STATUSES);
   const statusIndex = i % statusKeys.length;
@@ -35,7 +35,7 @@ export const mockOrders = Array.from({ length: 48 }, (_, i) => {
   };
 });
 
-// شبیه‌سازی API — بعد از 400ms داده برمی‌گرداند
+// Emulation API — Returns data after 400ms
 export function fetchOrders() {
   return new Promise((resolve) =>
     setTimeout(() => resolve([...mockOrders]), 400)
@@ -48,7 +48,7 @@ export function fetchStats() {
   const pending   = mockOrders.filter((o) => o.status === "PENDING").length;
   const revenue   = mockOrders.reduce((s, o) => s + o.total, 0);
 
-  // داده هفتگی برای Chart
+  // Weekly data for Chart
   const weekly = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((day, i) => ({
     day,
     orders:  randomInt(18, 60) + i * 2,
