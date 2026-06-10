@@ -1,12 +1,12 @@
 // src/hooks/useStats.js
 // ─────────────────────────────────────────────────────
-// React Query hook برای fetch آمار dashboard
+// React Query hook to fetch dashboard statistics
 //
-// چرا React Query به جای useEffect + fetch؟
-//  • caching: اگه همین data رو 5 کامپوننت بخوان، یک بار fetch میشه
-//  • staleTime: تا 60 ثانیه از cache جواب میده، بعد refetch می‌کنه
-//  • loading/error state رو خودش manage می‌کنه
-//  • refetchOnWindowFocus: وقتی tab رو focus می‌کنیم، داده رو تازه می‌کنه
+// why React Query instead of useEffect + fetch?
+//  • caching: If you read the same data in 5 components, it will be fetched once
+//  • staleTime: It answers from cache for 60 seconds, then it refetches
+//  • It manages the loading/error state by itself
+//  • refetchOnWindowFocus: When we focus the tab, it refreshes the data
 // ─────────────────────────────────────────────────────
 
 import { useQuery } from "@tanstack/react-query";
@@ -14,9 +14,9 @@ import { fetchStats } from "../data/mockOrders";
 
 export function useStats() {
   return useQuery({
-    queryKey:  ["dashboard-stats"],   // کلید unique برای cache
+    queryKey:  ["dashboard-stats"],   // Unique key for cache
     queryFn:   fetchStats,
-    staleTime: 60_000,                // 60 ثانیه داده "تازه" است
-    refetchOnWindowFocus: true,       // وقتی برگشتیم به tab، تازه کن
+    staleTime: 60_000,                // 60 seconds of data is "fresh"
+    refetchOnWindowFocus: true,       // When we go back to the tab, refresh
   });
 }
