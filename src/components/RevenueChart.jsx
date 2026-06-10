@@ -1,6 +1,6 @@
 // src/components/RevenueChart.jsx
 // ─────────────────────────────────────────────────────
-// نمودار درآمد هفتگی با Recharts
+// Weekly income chart with Recharts
 // ─────────────────────────────────────────────────────
 
 import { Card, Skeleton } from "antd";
@@ -21,11 +21,11 @@ export default function RevenueChart() {
       {isLoading ? (
         <Skeleton active paragraph={{ rows: 6 }} />
       ) : (
-        // ResponsiveContainer: نمودار را به اندازه container تنظیم می‌کند
+        // ResponsiveContainer: adjusts the chart to the size of the container
         <ResponsiveContainer width="100%" height={260}>
           <AreaChart data={data?.weekly} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
             <defs>
-              {/* gradient برای area fill */}
+              {/* gradient for area fill */}
               <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%"  stopColor="#1677ff" stopOpacity={0.3} />
                 <stop offset="95%" stopColor="#1677ff" stopOpacity={0}   />
