@@ -1,13 +1,13 @@
 // src/components/OrdersTable.jsx
 // ─────────────────────────────────────────────────────
-// جدول سفارشات — قلب dashboard
+// Table of orders — the heart of the dashboard
 //
 // Redux:
-//  • useSelector  → خواندن state از store
-//  • useDispatch  → dispatch کردن action برای تغییر state
+//  • useSelector  → read state from store
+//  • useDispatch  → dispatch action to change state
 //
-// این component هم از Redux (برای لیست + فیلتر) استفاده می‌کند
-// و هم از Ant Design (Table, Tag, Select)
+// This component also uses Redux (for list + filter).
+// And also Ant Design (Table, Tag, Select)
 // ─────────────────────────────────────────────────────
 
 import { useEffect } from "react";
@@ -27,13 +27,13 @@ const { Option } = Select;
 
 export default function OrdersTable() {
   const dispatch  = useDispatch();
-  // useSelector: فقط همان بخشی از state که نیاز داریم
+  // useSelector: Only the part of the state that we need
   const filtered  = useSelector(selectFilteredOrders);
   const loading   = useSelector((s) => s.orders.loading);
   const search    = useSelector((s) => s.orders.searchQuery);
   const filter    = useSelector((s) => s.orders.statusFilter);
 
-  // بار اول داده‌ها را بارگذاری کن
+  // Load the data first
   useEffect(() => {
     dispatch(loadOrders());
   }, [dispatch]);
@@ -83,7 +83,7 @@ export default function OrdersTable() {
       key:       "status",
       width:     130,
       render:    (status, record) => (
-        // تغییر وضعیت مستقیم از جدول → dispatch به Redux
+        // Change state directly from table → dispatch to Redux
         <Select
           value={status}
           size="small"
@@ -120,7 +120,7 @@ export default function OrdersTable() {
         </Tooltip>
       }
     >
-      {/* Toolbar: جستجو + فیلتر وضعیت */}
+      {/* Toolbar: search + status filter */}
       <Space style={{ marginBottom: 16, flexWrap: "wrap" }}>
         <Input
           prefix={<SearchOutlined />}
