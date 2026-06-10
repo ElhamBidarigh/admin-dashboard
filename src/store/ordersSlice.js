@@ -1,21 +1,21 @@
 // src/store/ordersSlice.js
 // ─────────────────────────────────────────────────────
-// Redux Toolkit Slice برای مدیریت state سفارشات
+// Redux Toolkit Slice for order state management
 //
-// مفاهیم کلیدی:
-//  • createSlice  → به جای switch/case قدیمی، slice یک reducer + action ساده می‌سازد
-//  • createAsyncThunk → برای async actions (مثل fetch از API)
-//  • immer (داخل toolkit) → می‌تونیم state رو مستقیم mutate کنیم، toolkit immutable می‌کنه
+// Key concepts:
+//  • createSlice  → instead of the old switch/case, slice creates a simple reducer + action
+//  • createAsyncThunk → for async actions (like fetch from API)
+//  • immer (Inside the toolkit) → We can directly mutate the state, the toolkit makes it immutable
 // ─────────────────────────────────────────────────────
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchOrders } from "../data/mockOrders";
 
 // ── Async Thunk ──────────────────────────────────────
-// loadOrders یک action async هست که وقتی dispatch میشه:
-//   1. حالت pending → loading: true
-//   2. موفق → fulfilled → orders پر میشه
-//   3. خطا  → rejected  → error ثبت میشه
+// loadOrders is an async action that is dispatched when:
+//   1. pending → loading: true
+//   2. successful → fulfilled → orders are filled
+//   3. Error → rejected → error is registered 
 export const loadOrders = createAsyncThunk(
   "orders/loadOrders",      // نام action
   async () => {
