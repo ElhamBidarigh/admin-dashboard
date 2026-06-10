@@ -1,6 +1,6 @@
-# Snoonu Ops Dashboard
+# Admin Ops Dashboard
 
-A production-style order management dashboard built for a food delivery super app context (inspired by Snoonu, Qatar).
+A production-style order management dashboard built for a food delivery super app context.
 
 ## Tech Stack
 
