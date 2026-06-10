@@ -1,7 +1,7 @@
 // src/components/StatsCards.jsx
 // ─────────────────────────────────────────────────────
-// کارت‌های آمار بالای dashboard
-// از useStats (React Query) استفاده می‌کند
+// Statistics cards above the dashboard
+// It uses useStats (React Query).
 // ─────────────────────────────────────────────────────
 
 import { Card, Col, Row, Statistic, Skeleton } from "antd";
