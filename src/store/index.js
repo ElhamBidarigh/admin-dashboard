@@ -1,6 +1,6 @@
 // src/store/index.js
 // ─────────────────────────────────────────────────────
-// configureStore → ترکیب همه slice‌ها به یک store مرکزی
+// configureStore → Combining all slices into a central store
 // ─────────────────────────────────────────────────────
 
 import { configureStore } from "@reduxjs/toolkit";
@@ -8,7 +8,7 @@ import ordersReducer from "./ordersSlice";
 
 const store = configureStore({
   reducer: {
-    orders: ordersReducer,   // state.orders در سراسر app
+    orders: ordersReducer,   // state.orders throughout the app
   },
 });
 
