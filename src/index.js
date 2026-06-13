@@ -1,10 +1,10 @@
 // src/index.js
 // ─────────────────────────────────────────────────────
-// Entry point — اینجا Provider‌ها wrap می‌شوند
+// Entry point — Providers are wrapped here
 //
-// Provider‌ها چیستند؟
-//  • <Provider store>    → Redux store را به همه component‌ها می‌دهد
-//  • <QueryClientProvider> → React Query cache را share می‌کند
+// What are providers?
+//  • <Provider store>    → Gives the Redux store to all components
+//  • <QueryClientProvider> → React shares the Query cache
 // ─────────────────────────────────────────────────────
 
 import React from "react";
@@ -13,14 +13,14 @@ import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import store from "./store";
 import App from "./App";
-import "antd/dist/reset.css";   // استایل پایه Ant Design
+import "antd/dist/reset.css";   // Basic Ant Design style
 
-// QueryClient: تنظیمات پیش‌فرض React Query
+// QueryClient: Default React Query settings
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 30_000,   // 30 ثانیه
-      retry:     1,        // در صورت خطا یک بار دیگر تلاش کن
+      staleTime: 30_000,   // 30 seconds
+      retry:     1,        // In case of error, try again
     },
   },
 });
