@@ -1,6 +1,6 @@
 // src/App.jsx
 // ─────────────────────────────────────────────────────
-// App اصلی — Layout کلی Dashboard
+// Main App — Overall Dashboard Layout
 // ─────────────────────────────────────────────────────
 
 import { Layout, Typography, Avatar, Space } from "antd";
@@ -46,13 +46,13 @@ export default function App() {
           Overview — Today
         </Title>
 
-        {/* آمار کلی */}
+        {/* General statistics */}
         <StatsCards />
 
-        {/* نمودار درآمد */}
+        {/* Income chart */}
         <RevenueChart />
 
-        {/* جدول سفارشات */}
+        {/* Orders table */}
         <OrdersTable />
       </Content>
     </Layout>
