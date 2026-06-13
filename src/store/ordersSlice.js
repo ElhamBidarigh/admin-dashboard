@@ -17,9 +17,9 @@ import { fetchOrders } from "../data/mockOrders";
 //   2. successful → fulfilled → orders are filled
 //   3. Error → rejected → error is registered 
 export const loadOrders = createAsyncThunk(
-  "orders/loadOrders",      // نام action
+  "orders/loadOrders",      // action name
   async () => {
-    const data = await fetchOrders();  // همان mock API
+    const data = await fetchOrders();  // The same mock API
     return data;
   }
 );
@@ -28,14 +28,14 @@ export const loadOrders = createAsyncThunk(
 const ordersSlice = createSlice({
   name: "orders",
   initialState: {
-    items:        [],       // آرایه سفارشات
+    items:        [],       // Array of orders
     loading:      false,
     error:        null,
-    searchQuery:  "",       // متن جستجو
-    statusFilter: "ALL",    // فیلتر وضعیت
+    searchQuery:  "",       // Search text
+    statusFilter: "ALL",    // Status filter
   },
 
-  // reducers همزمان (بدون async)
+  // synchronous reducers (no async)
   reducers: {
     setSearchQuery(state, action) {
       state.searchQuery = action.payload;
@@ -43,7 +43,7 @@ const ordersSlice = createSlice({
     setStatusFilter(state, action) {
       state.statusFilter = action.payload;
     },
-    // تغییر وضعیت یک سفارش مستقیم در state
+    // Change the status of a direct order in state
     updateOrderStatus(state, action) {
       const { id, status } = action.payload;
       const order = state.items.find((o) => o.id === id);
@@ -51,7 +51,7 @@ const ordersSlice = createSlice({
     },
   },
 
-  // extraReducers برای async thunk
+  // extraReducers for async thunk
   extraReducers: (builder) => {
     builder
       .addCase(loadOrders.pending,   (state) => { state.loading = true; state.error = null; })
@@ -70,7 +70,7 @@ export const { setSearchQuery, setStatusFilter, updateOrderStatus } = ordersSlic
 export default ordersSlice.reducer;
 
 // ── Selectors ────────────────────────────────────────
-// Selector: تابعی که از state فقط چیزی که نیاز داریم رو بیرون میکشه
+// Selector: A function that takes out only what we need from the state
 export const selectFilteredOrders = (state) => {
   const { items, searchQuery, statusFilter } = state.orders;
   return items.filter((o) => {
